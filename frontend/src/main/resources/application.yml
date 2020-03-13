@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: pcf-c2c-java-frontend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+backend:
+  host: localhost
+  port: 8081
+  loadBalancing: false
