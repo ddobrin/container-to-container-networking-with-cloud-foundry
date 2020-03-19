@@ -65,8 +65,8 @@ public class Controller {
         InetAddress[] hostIPs = getAllByName(this.backendProps.getHost());
         Intrinsics.checkExpressionValueIsNotNull(hostIPs, "InetAddress.getAllByName(backendProps.host)");
 
-        return Arrays.stream(hostIPs).map(InetAddress::getHostAddress)
-                .collect(Collectors.joining(" "));
+        return String.format("List of host addresses for ALL Backend instances: \n %s", Arrays.stream(hostIPs).map(InetAddress::getHostAddress)
+                .collect(Collectors.joining(",  ")));
     }
 
     @GetMapping({"/backend"})
@@ -79,6 +79,6 @@ public class Controller {
         String hostAddress = hostIP.getHostAddress();
         Intrinsics.checkExpressionValueIsNotNull(hostAddress, "InetAddress.getByName(ba…ndProps.host).hostAddress");
 
-        return hostAddress;
+        return "Backend instance host address: " + hostAddress;
     }
 }
