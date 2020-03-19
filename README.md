@@ -148,6 +148,19 @@ network requests. This implementation simply uses backend
 IP addresses given by BOSH-DNS, using a call to
 [InetAddress.getByName()](https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#getByName-java.lang.String-).
 
+A sample snippet of code showing the usage of InetAddress:
+```java
+    public String backendAddress() throws UnknownHostException {
+        InetAddress hostIP = InetAddress.getByName(this.backendProps.getHost());
+        Intrinsics.checkExpressionValueIsNotNull(hostIP, "InetAddress.getByName(backendProps.host)");
+
+        String hostAddress = hostIP.getHostAddress();
+        Intrinsics.checkExpressionValueIsNotNull(hostAddress, "InetAddress.getByName(ba…ndProps.host).hostAddress");
+
+        return "Backend instance host address: " + hostAddress;
+    }
+```
+
 You can disable client-side load-balancing by overriding the
 property `backend.loadBalancing`, which is set to
 `true` by default. You may also set this property using an
