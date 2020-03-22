@@ -92,8 +92,7 @@ public class InstanceInfoConfig {
         }
 
         public int hashCode() {
-            String var10000 = this.applicationName;
-            return var10000 != null ? var10000.hashCode() : 0;
+            return this.applicationName != null ? this.applicationName.hashCode() : 0;
         }
 
         public boolean equals(@Nullable Object var1) {

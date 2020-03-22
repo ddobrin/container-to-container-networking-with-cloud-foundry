@@ -52,24 +52,10 @@ public class Controller {
         }
 
         @NotNull
-        public final String component1() {
-            return this.message;
-        }
-
-        @NotNull
         public final Controller.DoorbellResponse copy(@NotNull String message) {
             Intrinsics.checkParameterIsNotNull(message, "message");
             return new Controller.DoorbellResponse(message);
         }
-
-//        // $FF: synthetic method
-//        public static Controller.DoorbellResponse copy$default(Controller.DoorbellResponse var0, String var1, int var2, Object var3) {
-//            if ((var2 & 1) != 0) {
-//                var1 = var0.message;
-//            }
-//
-//            return var0.copy(var1);
-//        }
 
         @NotNull
         public String toString() {
@@ -77,8 +63,7 @@ public class Controller {
         }
 
         public int hashCode() {
-            String var10000 = this.message;
-            return var10000 != null ? var10000.hashCode() : 0;
+            return this.message != null ? this.message.hashCode() : 0;
         }
 
         public boolean equals(@Nullable Object var1) {

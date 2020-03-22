@@ -52,9 +52,9 @@ public class BackendClientServiceImpl implements BackendClientService {
     }
 
     private static final Object bodyNotNull(@NotNull Response response) throws Throwable {
-        Object var10000 = response.body();
-        if (var10000 != null) {
-            return var10000;
+        Object body = response.body();
+        if (body != null) {
+            return body;
         } else {
             throw new IllegalStateException("No body set in response");
         }

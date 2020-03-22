@@ -1,6 +1,6 @@
 # Java Demo for Pivotal Cloud Foundry Container-to-Container Communication
 
-This project illustrates the use of [BOSH-DNS](https://bosh.io/docs/dns) for Java-based microservices
+This project illustrates the usage of [BOSH-DNS](https://bosh.io/docs/dns) for invoking Java-based microservices
 deployed on [Pivotal Cloud Foundry](https://pivotal.io/platform).
 
 ## Why BOSH-DNS for container-to-container communication
