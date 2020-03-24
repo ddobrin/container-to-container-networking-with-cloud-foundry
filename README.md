@@ -15,6 +15,10 @@ from within the platform.
 Moreover, these apps do not require a public route in order to be
 accessible from apps, and do not use the `gorouter`, thus offering also better performance.
 
+Container architecture
+ 
+![Architecture](https://github.com/ddobrin/container-to-container-networking-with-cloud-foundry/blob/master/images/BoshDNS.png)  
+
 ## Enable container-to-container access within PCF-based apps
 An app making a direct connection to another app requires a network policy.
 This [network policy](https://docs.cloudfoundry.org/concepts/understand-cf-networking.html)
