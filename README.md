@@ -19,6 +19,27 @@ accessible from apps, and do not use the `gorouter`, thus offering also better p
  
 ![Architecture](https://github.com/ddobrin/container-to-container-networking-with-cloud-foundry/blob/master/images/BoshDNS.png)  
 
+1. Routes:
+  * Routes are emitted from the Route Emitter. 
+  * Internal routes are emitted from the Route Emitter as well, on a separate topic. 
+  * The NATS message queue cluster that handles routes for the gorouter also handles internal routes.
+
+2. Service Discovery Controller (SDC): 
+subscribes to route updates from NATS on the internal routes topic and is highly available.
+
+3. BOSH-DNS routing:
+  * Each Diego Cell has a BOSH DNS and a BOSH-DNS Adapter
+  * App containers are configured to use the BOSH DNS server on their Diego cell as their DNS server
+  * The BOSH-DNS Adapter configures BOSH DNS to route queries for internal domains to itself
+  * When a request for an internal domain hits BOSH DNS it looks at the domain name. 
+  * If it's internal it directs the request to the BOSH-DNS Adapter
+  * The BOSH DNS adapter in turn makes a request to the SDC
+  * SDC responds with all the IPs of all the app containers associated with the requested route
+  * BOSH DNS adapter returns all the IPs returned from the SDC, shuffled
+  * BOSH DNS in turn returns the full set of IPs originally from the SDC
+  * Clients pick an IP from the list, usually the first  one, as a form of load-balancing
+
+
 ## Enable container-to-container access within PCF-based apps
 An app making a direct connection to another app requires a network policy.
 This [network policy](https://docs.cloudfoundry.org/concepts/understand-cf-networking.html)
